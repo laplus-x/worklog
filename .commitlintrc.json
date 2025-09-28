@@ -1,0 +1,127 @@
+{
+    "extends": ["@commitlint/config-conventional"],
+    "rules": {
+        "body-leading-blank": [1, "always"],
+        "body-max-line-length": [2, "always", 100],
+        "footer-leading-blank": [1, "always"],
+        "footer-max-line-length": [2, "always", 100],
+        "header-max-length": [2, "always", 100],
+        "subject-case": [
+            2,
+            "never",
+            ["sentence-case", "start-case", "pascal-case", "upper-case"]
+        ],
+        "subject-empty": [2, "never"],
+        "subject-full-stop": [2, "never", "."],
+        "type-case": [2, "always", "lower-case"],
+        "type-empty": [2, "never"],
+        "type-enum": [
+            2,
+            "always",
+            [
+                "build",
+                "chore",
+                "ci",
+                "docs",
+                "feat",
+                "fix",
+                "perf",
+                "refactor",
+                "revert",
+                "style",
+                "test"
+            ]
+        ]
+    },
+    "prompt": {
+        "questions": {
+            "type": {
+                "description": "選擇要提交的改動類型",
+                "enum": {
+                    "feat": {
+                        "description": "新功能",
+                        "title": "Features",
+                        "emoji": "✨"
+                    },
+                    "fix": {
+                        "description": "修復錯誤",
+                        "title": "Bug Fixes",
+                        "emoji": "🐛"
+                    },
+                    "docs": {
+                        "description": "撰寫開發文件",
+                        "title": "Documentation",
+                        "emoji": "📚"
+                    },
+                    "style": {
+                        "description": "格式化程式碼(ex: lint)",
+                        "title": "Styles",
+                        "emoji": "💎"
+                    },
+                    "refactor": {
+                        "description": "優化程式 (不改變其功能狀況下提升程式碼品質)",
+                        "title": "Code Refactoring",
+                        "emoji": "📦"
+                    },
+                    "perf": {
+                        "description": "改善程式效能",
+                        "title": "Performance Improvements",
+                        "emoji": "🚀"
+                    },
+                    "test": {
+                        "description": "撰寫測試",
+                        "title": "Tests",
+                        "emoji": "🚨"
+                    },
+                    "build": {
+                        "description": "建構配置 (ex: gulp, broccoli, npm)",
+                        "title": "Builds",
+                        "emoji": "🛠"
+                    },
+                    "ci": {
+                        "description": "CI 配置(ex: Travis, Circle, BrowserStack, SauceLabs)",
+                        "title": "Continuous Integrations",
+                        "emoji": "⚙️"
+                    },
+                    "chore": {
+                        "description": "輔助工具配置(非主程式或測試)",
+                        "title": "Chores",
+                        "emoji": "♻️"
+                    },
+                    "revert": {
+                        "description": "撤銷先前的提交",
+                        "title": "Reverts",
+                        "emoji": "🗑"
+                    }
+                }
+            },
+            "scope": {
+                "description": "改動範圍 (e.g. component or file name)"
+            },
+            "subject": {
+                "description": "改動概述"
+            },
+            "body": {
+                "description": "改動詳細描述"
+            },
+            "isBreaking": {
+                "description": "是否為破壞性改動?"
+            },
+            "breakingBody": {
+                "description": "破壞性改動必須詳細說明改動內容。請輸入此提交的改動詳細描述"
+            },
+            "breaking": {
+                "description": "描述破壞性改動內容"
+            },
+            "isIssueAffected": {
+                "description": "是否完成任務 ?"
+            },
+            "issuesBody": {
+                "description": "完成任務必須詳細說明改動內容。請輸入此提交的改動詳細描述"
+            },
+            "issues": {
+                "description": "註明任務編號 (e.g. \"issue #123\", \"ref #123\".)"
+            }
+        }
+    }
+}
