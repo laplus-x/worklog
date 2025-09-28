@@ -1,0 +1,22 @@
+[
+  {
+    "text": "日誌",
+    "link": "/logs",
+    "activeMatch": "/logs"
+  },
+  {
+    "text": "貢獻",
+    "link": "/contributions",
+    "activeMatch": "/contributions"
+  },
+  {
+    "text": "進度",
+    "link": "/reports",
+    "activeMatch": "/reports"
+  },
+  {
+    "text": "產品",
+    "link": "/products",
+    "activeMatch": "/products"
+  }
+]
