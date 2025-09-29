@@ -10,8 +10,8 @@ hero:
       text: 查看日誌
       link: /logs
     - theme: alt
-      text: GitHub
-      link: https://github.com/laplus-x/laplus-x
+      text: 查看進度
+      link: /reports
 features:
   - title: 系統化紀錄
     details: 將每日工作統一記錄，形成完整可追蹤的歷史資料。

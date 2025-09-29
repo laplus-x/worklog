@@ -1,6 +1,13 @@
+import { TaskBarChart, TaskPieChart } from "@/Task";
+import { TimeThresholdChart, TimeTreemapChart } from "@/Time";
+import task from "./task.json";
+import time from "./time.json";
+
 # 2025/09/15–2025/09/19
 
 ## 任務完成度
+
+<TaskBarChart data={task} />
 
 | 任務分類   | 計劃任務                   | 已完成 | 進度 (%) | 優先 | 影響 | 價值 |
 | ---------- | -------------------------- | ------ | -------- | ---- | ---- | ---- |
@@ -9,6 +16,8 @@
 | CI/CD 優化 | Pipeline 快取與建置效率    | 1/1    | 100%     | 中   | 低   | 低   |
 | 功能開發   | 付款方式 CRUD 需求了解     | 1/1    | 100%     | 低   | 低   | 低   |
 | 文件完善   | 文件更新與整理             | 1/1    | 100%     | 中   | 低   | 中   |
+
+<TaskPieChart data={task} />
 
 **總體任務完成度：** 約 100%（本週目標已完成）
 
@@ -20,6 +29,8 @@
 
 ## 時間分配分析
 
+<TimeTreemapChart data={time} />
+
 | 類別       | 預計工時 | 實際工時 | 說明                                              |
 | ---------- | -------- | -------- | ------------------------------------------------- |
 | 處理環境   | 4p       | 4p       | 安裝順利                                          |
@@ -28,6 +39,8 @@
 | CI/CD 優化 | 4p       | 3p       | 研究 Docker BuildKit 與 Pipeline 快取花費額外時間 |
 | 功能開發   | 1p       | 2p       | CRUD 功能需求了解與分析完成                       |
 | 文件完善   | 6p       | 6p       | 完成文檔整理                                      |
+
+<TimeThresholdChart data={time} />
 
 **觀察**：本週任務時間分配合理，無重大延遲
 

@@ -10,13 +10,12 @@ export default defineConfig({
   icon: 'https://avatars.githubusercontent.com/u/105040809',
   logo: 'https://avatars.githubusercontent.com/u/105040809',
   themeConfig: {
-    lastUpdated: true,
     enableScrollToTop: true,
     socialLinks: [
       {
         icon: 'github',
         mode: 'link',
-        content: 'https://github.com/laplus-x/laplus-x',
+        content: 'https://github.com/laplus-x',
       },
     ],
   },

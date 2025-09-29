@@ -1,6 +1,13 @@
+import { TaskBarChart, TaskPieChart } from "@/Task";
+import { TimeThresholdChart, TimeTreemapChart } from "@/Time";
+import task from "./task.json";
+import time from "./time.json";
+
 # 2025/09/22–2025/09/26
 
 ## 任務完成度
+
+<TaskBarChart data={task} />
 
 | 任務分類 | 計劃任務                     | 已完成 | 進度 (%) | 優先 | 影響 | 價值 |
 | -------- | ---------------------------- | ------ | -------- | ---- | ---- | ---- |
@@ -11,7 +18,9 @@
 | iOS 打包 | Fastlane 優化打包流程        | 0/1    | 50%      | 中   | 低   | 低   |
 | 實機測試 | 本地端 iOS 實機測試          | 0/1    | 20%      | 低   | 低   | 低   |
 
-**總體任務完成度：** 約 80%（大部分計劃任務已完成，少數待解決問題）
+<TaskPieChart data={task} />
+
+**總體任務完成度：** 約 67%（大部分計劃任務已完成，少數待解決問題）
 
 ## 實際 vs 計劃差異
 
@@ -19,6 +28,8 @@
 Fastlane 優化打包流程正在進行中，而本地端 iOS 實機測試因憑證問題暫時無法完成，造成部分計劃進度延後。
 
 ## 時間分配分析
+
+<TimeTreemapChart data={time} />
 
 | 類別         | 預計工時 | 實際工時 | 說明                                   |
 | ------------ | -------- | -------- | -------------------------------------- |
@@ -29,6 +40,8 @@ Fastlane 優化打包流程正在進行中，而本地端 iOS 實機測試因憑
 | iOS 配置     | 4p       | 4p       | 多環境設定檔完成導入                   |
 | iOS 打包流程 | 10p      | 6p       | Fastlane 優化進行中                    |
 | 實機測試     | 2p       | 1p       | 憑證問題阻礙進度，尚未完成             |
+
+<TimeThresholdChart data={time} />
 
 **觀察**：大部分工作在預期工時內完成，iOS 實機測試與 Fastlane 優化占用部分時間尚未完成。
 
