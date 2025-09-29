@@ -53,7 +53,7 @@ program
     .option('-r, --repo <path>', 'Path to Git repository', process.cwd())
     .requiredOption('-a, --author <name>', 'Author name or email')
     .option('-s, --since <date>', 'Start date (YYYY-MM-DD)')
-    .option('-u, --until <date>', 'End date (YYYY-MM-DD)', new Date().toISOString().slice(0, 10))
+    .option('-u, --until <date>', 'End date (YYYY-MM-DD)')
     .option('-o, --output <file>', 'Output JSON file', 'stats.json');
 
 program.parse(process.argv);
