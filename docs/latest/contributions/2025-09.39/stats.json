@@ -1,0 +1,38 @@
+[
+  {
+    "project": "psd-adm",
+    "date": "2025-09-22",
+    "mergeCount": 0,
+    "commitCount": 6,
+    "additions": 880,
+    "deletions": 30,
+    "diff": 850
+  },
+  {
+    "project": "snv-app",
+    "date": "2025-09-23",
+    "mergeCount": 0,
+    "commitCount": 3,
+    "additions": 145,
+    "deletions": 134,
+    "diff": 11
+  },
+  {
+    "project": "snv-app",
+    "date": "2025-09-24",
+    "mergeCount": 2,
+    "commitCount": 4,
+    "additions": 3831,
+    "deletions": 1505,
+    "diff": 2326
+  },
+  {
+    "project": "snv-app",
+    "date": "2025-09-25",
+    "mergeCount": 1,
+    "commitCount": 6,
+    "additions": 571,
+    "deletions": 121,
+    "diff": 450
+  }
+]

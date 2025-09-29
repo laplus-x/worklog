@@ -1,0 +1,56 @@
+[
+  {
+    "project": "common-service-lib",
+    "date": "2025-09-16",
+    "mergeCount": 1,
+    "commitCount": 2,
+    "additions": 3,
+    "deletions": 1,
+    "diff": 2
+  },
+  {
+    "project": "ace-act-consumer",
+    "date": "2025-09-16",
+    "mergeCount": 1,
+    "commitCount": 2,
+    "additions": 5,
+    "deletions": 5,
+    "diff": 0
+  },
+  {
+    "project": "psd-adm",
+    "date": "2025-09-16",
+    "mergeCount": 0,
+    "commitCount": 2,
+    "additions": 6,
+    "deletions": 17,
+    "diff": -11
+  },
+  {
+    "project": "psd-adm",
+    "date": "2025-09-17",
+    "mergeCount": 3,
+    "commitCount": 16,
+    "additions": 65,
+    "deletions": 47,
+    "diff": 18
+  },
+  {
+    "project": "psd-k8s-cd",
+    "date": "2025-09-17",
+    "mergeCount": 1,
+    "commitCount": 3,
+    "additions": 2,
+    "deletions": 2,
+    "diff": 0
+  },
+  {
+    "project": "psd-k8s-cd",
+    "date": "2025-09-18",
+    "mergeCount": 1,
+    "commitCount": 1,
+    "additions": 0,
+    "deletions": 0,
+    "diff": 0
+  }
+]

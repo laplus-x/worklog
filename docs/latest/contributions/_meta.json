@@ -6,11 +6,16 @@
   },
   {
     "type": "section-header",
-    "label": "2025"
+    "label": "2025/09"
   },
   {
-    "type": "dir",
-    "name": "2025-09",
-    "label": "2025/09"
+    "type": "file",
+    "name": "2025-09.39",
+    "label": "2025/09 W4"
+  },
+  {
+    "type": "file",
+    "name": "2025-09.38",
+    "label": "2025/09 W3"
   }
 ]
