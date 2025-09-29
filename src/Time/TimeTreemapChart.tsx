@@ -2,7 +2,7 @@ import { useTheme } from "@/Hook";
 import { Group } from "@visx/group";
 import { Treemap, hierarchy, stratify } from "@visx/hierarchy";
 import { scaleLinear } from "@visx/scale";
-import { Time } from "./types";
+import type { Time } from "./types";
 
 interface TimeTreemapChartProps {
   data: Time[];
@@ -74,7 +74,7 @@ export const TimeTreemapChart = ({ data }: TimeTreemapChartProps) => {
                     fontSize={14}
                     fontWeight="bold"
                     textAnchor="middle"
-                    alignmentBaseline="middle"
+                    dominantBaseline="middle"
                   >
                     {nodeData.id} ({node.value})
                   </text>

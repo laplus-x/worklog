@@ -3,7 +3,7 @@ import { AxisBottom, AxisLeft } from "@visx/axis";
 import { Group } from "@visx/group";
 import { scaleBand, scaleLinear, scaleOrdinal } from "@visx/scale";
 import { BarStackHorizontal } from "@visx/shape";
-import { Task } from "./types";
+import type { Task } from "./types";
 
 interface TaskBarChartProps {
   data: Task[];
@@ -64,7 +64,7 @@ export const TaskBarChart = ({ data }: TaskBarChartProps) => {
         <AxisBottom
           top={innerHeight}
           scale={xScale}
-          numTicks={10}
+          numTicks={5}
           stroke={color}
           tickStroke={color}
           tickLabelProps={{ fontSize: 14, fill: color }}

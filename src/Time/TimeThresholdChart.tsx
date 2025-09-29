@@ -6,7 +6,7 @@ import { Group } from "@visx/group";
 import { scaleBand, scaleLinear } from "@visx/scale";
 import { LinePath } from "@visx/shape";
 import { Threshold } from "@visx/threshold";
-import { Time } from "./types";
+import type { Time } from "./types";
 
 interface TimeThresholdChartProps {
   data: Time[];

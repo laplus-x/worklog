@@ -3,7 +3,7 @@ import { Group } from "@visx/group";
 import { scaleOrdinal } from "@visx/scale";
 import { Pie } from "@visx/shape";
 import { Text } from "@visx/text";
-import { Task } from "./types";
+import type { Task } from "./types";
 
 interface TaskPieChartProps {
   data: Task[];
