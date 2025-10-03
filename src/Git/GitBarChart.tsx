@@ -17,6 +17,8 @@ const colorScale = scaleOrdinal({
   range: ["PaleGreen", "Pink"], // 綠=完成, 紅=未完成
 });
 
+const formatter = new Intl.NumberFormat();
+
 export const GitBarChart = ({ data }: GitBarChartProps) => {
   const { theme } = useTheme();
   const color = theme === "dark" ? "#fff" : "#000";
@@ -52,7 +54,7 @@ export const GitBarChart = ({ data }: GitBarChartProps) => {
 
   const yScale = scaleBand({
     domain: statsData.map((d) => d.project),
-    padding: 0.2,
+    padding: 0.6,
     range: [0, innerHeight],
   });
 
@@ -70,7 +72,7 @@ export const GitBarChart = ({ data }: GitBarChartProps) => {
         />
         {/* 在每個 bar 右側顯示 diff 數值 */}
         {statsData.map((d) => {
-          const y = yScale(d.project)! + yScale.bandwidth() / 2;
+          const y = yScale(d.project)! - yScale.bandwidth() / 2;
           const x = xScale(0)!;
           return (
             <Text
@@ -82,7 +84,7 @@ export const GitBarChart = ({ data }: GitBarChartProps) => {
               textAnchor="middle"
               dominantBaseline="middle"
             >
-              {`Δ ${d.diff}`}
+              {`Δ ${formatter.format(d.diff)}`}
             </Text>
           );
         })}
