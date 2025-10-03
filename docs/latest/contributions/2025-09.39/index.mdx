@@ -1,4 +1,4 @@
-import { GitBarChart } from "@/Git";
+import { GitBarChart, GitHeatmapChart } from "@/Git";
 import stats from "./stats.json";
 
 # 2025/09/22–2025/09/26
@@ -35,6 +35,8 @@ import stats from "./stats.json";
 - 安裝並初始化 Storybook
 
 ## 每周總結
+
+<GitHeatmapChart data={stats} />
 
 1. 完成 **PayChannel 功能開發**，包括前後端 CRUD、頁面與元件建置，以及文件說明。
 2. iOS 配置與 Dev 打包環境完成調整。

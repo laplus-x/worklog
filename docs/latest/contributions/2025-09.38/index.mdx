@@ -1,4 +1,4 @@
-import { GitBarChart } from "@/Git";
+import { GitBarChart, GitHeatmapChart } from "@/Git";
 import stats from "./stats.json";
 
 # 2025/09/15–2025/09/19
@@ -28,6 +28,8 @@ import stats from "./stats.json";
 - 修正 postDao 的 findByTerm 查詢，依創建時間降序
 
 ## 每周總結
+
+<GitHeatmapChart data={stats} />
 
 1. 修正專案 config 相關錯誤
 2. 優化 Pipelines 建置

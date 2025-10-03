@@ -7,6 +7,7 @@
         "@visx/axis": "^3.12.0",
         "@visx/grid": "^3.12.0",
         "@visx/group": "^3.12.0",
+        "@visx/heatmap": "^3.12.0",
         "@visx/hierarchy": "^3.12.0",
         "@visx/scale": "^3.12.0",
         "@visx/shape": "^3.12.0",
@@ -283,6 +284,8 @@
     "@visx/grid": ["@visx/grid@3.12.0", "", { "dependencies": { "@types/react": "*", "@visx/curve": "3.12.0", "@visx/group": "3.12.0", "@visx/point": "3.12.0", "@visx/scale": "3.12.0", "@visx/shape": "3.12.0", "classnames": "^2.3.1", "prop-types": "^15.6.2" }, "peerDependencies": { "react": "^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0" } }, "sha512-L4ex2ooSYhwNIxJ3XFIKRhoSvEGjPc2Y3YCrtNB4TV5Ofdj4q0UMOsxfrH23Pr8HSHuQhb6VGMgYoK0LuWqDmQ=="],
 
     "@visx/group": ["@visx/group@3.12.0", "", { "dependencies": { "@types/react": "*", "classnames": "^2.3.1", "prop-types": "^15.6.2" }, "peerDependencies": { "react": "^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0" } }, "sha512-Dye8iS1alVXPv7nj/7M37gJe6sSKqJLH7x6sEWAsRQ9clI0kFvjbKcKgF+U3aAVQr0NCohheFV+DtR8trfK/Ag=="],
+
+    "@visx/heatmap": ["@visx/heatmap@3.12.0", "", { "dependencies": { "@types/react": "*", "@visx/group": "3.12.0", "classnames": "^2.3.1", "prop-types": "^15.6.1" }, "peerDependencies": { "react": "^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0" } }, "sha512-+YhXHfMvwQOMf9xMd15FUOoiKqf84o1UF0zsmnNsCC75MqFMpjvzc3DeoC37fi69iBIKchU8DjhVubvCE9N4jA=="],
 
     "@visx/hierarchy": ["@visx/hierarchy@3.12.0", "", { "dependencies": { "@types/d3-hierarchy": "^1.1.6", "@types/react": "*", "@visx/group": "3.12.0", "classnames": "^2.3.1", "d3-hierarchy": "^1.1.4", "prop-types": "^15.6.1" }, "peerDependencies": { "react": "^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0" } }, "sha512-+X1HOeLEOODxjAD7ixrWJ4KCVei4wFe8ra3dYU0uZ14RdPPgUeiuyBfdeXWZuAHM6Ix9qrryneatQjkC3h4mvA=="],
 
