@@ -6,6 +6,15 @@
   },
   {
     "type": "section-header",
+    "label": "2025/10"
+  },
+  {
+    "type": "file",
+    "name": "2025-10.40",
+    "label": "2025/10 W1"
+  },
+  {
+    "type": "section-header",
     "label": "2025/09"
   },
   {
