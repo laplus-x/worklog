@@ -64,13 +64,15 @@ export const TimeThresholdChart = ({ data }: TimeThresholdChartProps) => {
           scale={yScale}
           width={innerWidth}
           height={innerHeight}
-          stroke="#e0e0e0"
+          stroke={color}
+          strokeOpacity={0.1}
         />
         <GridColumns
           scale={xScale}
           width={innerWidth}
           height={innerHeight}
-          stroke="#e0e0e0"
+          stroke={color}
+          strokeOpacity={0.1}
         />
 
         {/* 底線 */}
@@ -79,7 +81,8 @@ export const TimeThresholdChart = ({ data }: TimeThresholdChartProps) => {
           x2={innerWidth}
           y1={0}
           y2={innerHeight}
-          stroke="#e0e0e0"
+          stroke={color}
+          strokeOpacity={0.1}
         />
 
         {/* Threshold 區域 */}
