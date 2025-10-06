@@ -14,7 +14,7 @@ const colorScale = scaleOrdinal({
   domain: keys,
   range: ["PaleGreen", "Pink"], // 綠=完成, 紅=未完成
 });
-const margin = { top: 20, right: 20, bottom: 50, left: 100 };
+const margin = { top: 20, right: 20, bottom: 50, left: 150 };
 
 export const TaskBarChart = ({ data }: TaskBarChartProps) => {
   const { theme } = useTheme();

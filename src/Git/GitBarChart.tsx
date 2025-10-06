@@ -10,7 +10,7 @@ interface GitBarChartProps {
   data: Stats[];
 }
 
-const margin = { top: 10, right: 20, bottom: 30, left: 180 };
+const margin = { top: 10, right: 20, bottom: 30, left: 150 };
 const keys = ["additions", "deletions"];
 const colorScale = scaleOrdinal({
   domain: keys,
