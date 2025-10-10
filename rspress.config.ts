@@ -1,4 +1,5 @@
 import * as path from 'node:path';
+import mermaid from 'rspress-plugin-mermaid';
 import { defineConfig } from 'rspress/config';
 
 export default defineConfig({
@@ -27,7 +28,18 @@ export default defineConfig({
     versioned: true,
   },
   ssg: false,
-  builderPlugins: [],
+  plugins: [
+    mermaid({
+      mermaidConfig: {
+        theme: "forest",
+        darkMode: true,
+        gantt: {
+          useMaxWidth: false,
+          displayMode: "week",
+        }
+      }
+    })
+  ],
   builderConfig: {
     resolve: {
       alias: {
