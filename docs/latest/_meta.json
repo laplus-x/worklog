@@ -18,5 +18,10 @@
     "text": "產品",
     "link": "/products",
     "activeMatch": "/products"
+  },
+  {
+    "text": "規格",
+    "link": "/specifications",
+    "activeMatch": "/specifications"
   }
 ]

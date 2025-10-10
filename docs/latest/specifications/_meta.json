@@ -1,0 +1,17 @@
+[
+  {
+    "type": "file",
+    "name": "index",
+    "label": "Overview"
+  },
+  {
+    "type": "dir",
+    "name": "frame",
+    "label": "畫面"
+  },
+  {
+    "type": "dir",
+    "name": "animation",
+    "label": "動畫"
+  }
+]
