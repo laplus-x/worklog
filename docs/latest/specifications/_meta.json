@@ -11,7 +11,32 @@
   },
   {
     "type": "dir",
+    "name": "story",
+    "label": "劇情"
+  },
+  {
+    "type": "dir",
     "name": "animation",
     "label": "動畫"
+  },
+  {
+    "type": "dir",
+    "name": "sound",
+    "label": "音效"
+  },
+  {
+    "type": "dir",
+    "name": "logic",
+    "label": "邏輯"
+  },
+  {
+    "type": "dir",
+    "name": "balance",
+    "label": "平衡"
+  },
+  {
+    "type": "dir",
+    "name": "business",
+    "label": "營運"
   }
 ]
