@@ -1,0 +1,38 @@
+[
+  {
+    "project": "snv-app",
+    "date": "2025-09-30",
+    "mergeCount": 0,
+    "commitCount": 1,
+    "additions": 406,
+    "deletions": 27,
+    "diff": 379
+  },
+  {
+    "project": "snv-app",
+    "date": "2025-10-02",
+    "mergeCount": 0,
+    "commitCount": 3,
+    "additions": 165,
+    "deletions": 20,
+    "diff": 145
+  },
+  {
+    "project": "snv-app",
+    "date": "2025-10-03",
+    "mergeCount": 0,
+    "commitCount": 2,
+    "additions": 5,
+    "deletions": 5,
+    "diff": 0
+  },
+  {
+    "project": "snv-app",
+    "date": "2025-10-07",
+    "mergeCount": 2,
+    "commitCount": 6,
+    "additions": 83,
+    "deletions": 139,
+    "diff": -56
+  }
+]

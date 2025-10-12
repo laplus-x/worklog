@@ -1,0 +1,39 @@
+import { GitBarChart, GitHeatmapChart } from "@/Git";
+import stats from "./stats.json";
+
+# 2025/10/06–2025/10/10
+
+<GitBarChart data={stats} />
+
+## snv 少女星
+
+### Fastlane 自動化發佈流程建置
+
+- **初始化 Fastlane 專案**：建立基本設定與結構  
+  ```fastlane/init```  
+  ```fastlane/Gymfile```
+- **整合 Android 打包流程**：  
+  - 新增 Fastlane Android 打包腳本與流程  
+  - 調整 ```android/app/build.gradle``` 設定  
+  - 增加測試用 ```AppIcon```  
+  - 刪除多餘的 ```strings.xml``` 測試檔
+- **安裝 Fastlane Plugins** 並更新 ```Gemfile```
+- **新增環境變數範例檔** (```.env.example```)，提供打包與部署設定參考  
+- **測試自動發佈**：驗證 Fastlane 部署至 Google Play 的流程可行性  
+- **合併 Fastlane 設定**：整併 ```Gymfile```，確保 iOS/Android 打包設定一致  
+- **iOS 設定**：調整打包指令，指定 production scheme  
+- **最終整合**：完成 PR #2551，正式導入 Fastlane 至專案
+
+### 環境變數管理優化
+
+- 導入 **react-native-config** 套件以管理多環境設定  
+- 新增並測試不同環境的變數切換  
+- 完成 PR #2553：統一專案中環境變數的管理方式  
+
+## 每周總結
+
+<GitHeatmapChart data={stats} />
+
+1. 完成 **Fastlane 自動化部署流程建置**，包括 Android/iOS 的初始化、打包設定與 Google Play 測試發佈。  
+2. 新增 **環境變數管理系統 (react-native-config)**，統一專案多環境設定方式。  
+3. 專案自動化程度提升，未來部署及測試流程更穩定高效。
