@@ -41,89 +41,37 @@ sequenceDiagram
     S-->>F: exit 完成並銷毀 UI
 ```
 
-## 角色攻擊動畫（Warrior_Attack）
+## 互動事件層
 
-玩家操作角色攻擊敵人，點擊「攻擊」按鈕觸發動畫。攻擊動畫根據武器類型（劍、弓、魔法）切換，需同步觸發音效、傷害判定及特效。動畫播放完畢後角色回到 idle 狀態。
+| 事件代碼             | 觸發來源   | 條件           | 系統回應                |
+| -------------------- | ---------- | -------------- | ----------------------- |
+| EVT_RULES_VIEW       | 開場       | 狀態 idle      | 顯示教學提示            |
+| EVT_COLLISION_ITEM   | 系統判斷   | 與道具重疊     | 分數+10，移除道具       |
+| EVT_COLLISION_ENEMY  | 系統判斷   | 與敵人重疊     | 扣分、暈眩              |
+| EVT_PLAYER_HIT       | 系統判斷   | 遭受傷害       | 扣血、更新分數          |
+| EVT_STATE_RECOVER    | 系統判斷   | 回復事件       | 回復血量或狀態          |
+| EVT_SCORE_UPDATE     | 系統事件   | 分數變化       | 更新分數、觸發特效      |
+| EVT_PAUSE_GAME       | 點擊暫停   | 遊戲進行中     | 停止遊戲更新、保存狀態  |
+| EVT_MUTE_AUDIO       | 點擊靜音   | 遊戲進行中     | 靜音音效                |
+| EVT_REPLAY_GAME      | 點擊重玩   | 遊戲結束或暫停 | 重置遊戲狀態（分數/HP） |
+| EVT_VIEW_LEADERBOARD | 點擊排行榜 | 無             | 顯示排行榜              |
 
-```mermaid
-flowchart TD
-  A[玩家點擊攻擊按鈕] --> B[檢查角色狀態]
-  B -->|idle & cooldown ok| C[播放攻擊動畫 attack_slash]
-  C --> D[觸發 evt_sfx 播放揮劍音效]
-  C --> E[觸發 evt_hit_check 計算傷害]
-  C --> F[觸發 evt_vfx_spawn 生成特效]
-  D --> G[同步播放完成]
-  E --> G
-  F --> G
-  G --> H[動畫結束，回 idle]
-```
+## 互動動畫層
 
-| 欄位                       | 說明                                                                                                     |
-| -------------------------- | -------------------------------------------------------------------------------------------------------- |
-| **Component**              | Character — Warrior Attack                                                                               |
-| **Trigger**                | 玩家點擊「攻擊」按鈕或 AI 自動攻擊事件                                                                   |
-| **Preconditions**          | 角色狀態為 idle，攻擊冷卻完成                                                                            |
-| **Visual Intent**          | 揮劍動作與衝擊特效，表現力量感與命中節奏                                                                 |
-| **Spine Animation Name**   | `char_warrior/attack_slash`、`char_warrior/attack_crit`                                                  |
-| **Duration**               | slash: 0.80 秒；crit: 1.10 秒                                                                            |
-| **Loop**                   | 否                                                                                                       |
-| **Key Bones / Slots**      | `root`、`weapon_sword`、`fx_trail`                                                                       |
-| **Attachments / Mesh**     | `fx_trail` mesh；`hit_flash` region attachment                                                           |
-| **Events emitted (Spine)** | `evt_hit_check` (float: 0.5)、`evt_sfx` (string:`sfx_sword_01`)、`evt_vfx_spawn` (string:`vfx_slash_01`) |
-| **Mix in / out**           | idle → attack: 0.06 秒；attack → idle: 0.08 秒                                                           |
-| **Track index**            | 0（主動作）、1（VFX overlay）                                                                            |
-| **Engine Notes**           | 監聽事件計算傷害，動畫結束回 idle。受擊中斷時呼叫 `setEmptyAnimation(0,0.1)`                             |
-| **Acceptance Criteria**    | 命中特效與音效同步 ±0.03 秒；動畫全長 < 1.2 秒；FPS ≥ 55；重播無錯位                                     |
+| 事件代碼               | Spine Animation Name      | Track | Duration (s) | Mix in / out | Loop | Engine Notes                                 |
+| ---------------------- | ------------------------- | ----- | ------------ | ------------ | ---- | -------------------------------------------- |
+| EVT_PLAYER_ATTACK      | char_warrior/attack_slash | 0     | 0.80         | 0.06 / 0.08  | 否   | 觸發 evt_sfx / evt_hit_check / evt_vfx_spawn |
+| EVT_PLAYER_ATTACK_CRIT | char_warrior/attack_crit  | 0     | 1.10         | 0.06 / 0.08  | 否   | 觸發高傷害音效和特效                         |
+| EVT_PLAYER_IDLE        | char_warrior/idle         | 0     | Loop         | —            | 是   | 基本待機動畫                                 |
+| EVT_LEVELUP_ENTER      | ui_levelup/enter          | 0     | 0.45         | 0.12 / 0.06  | 否   | 觸發 evt_sfx / evt_vfx_spawn                 |
+| EVT_LEVELUP_IDLE       | ui_levelup/idle           | 0     | 1.80         | 0.06 / —     | 否   | UI idle 狀態                                 |
+| EVT_LEVELUP_EXIT       | ui_levelup/exit           | 0     | 0.40         | — / 0.08     | 否   | 播放完銷毀 UI                                |
+| EVT_UI_BUTTON_HOVER    | ui/button_hover           | 1     | 0.20         | 0.05 / 0.05  | 否   | 叠加播放於 UI base                           |
+| EVT_UI_BUTTON_CLICK    | ui/button_click           | 1     | 0.15         | 0.04 / 0.04  | 否   | 叠加播放於 UI base                           |
+| EVT_VFX_HIT            | fx/hit_flash              | 1     | 0.10         | 0.03 / 0.03  | 否   | Overlay 特效                                 |
+| EVT_VFX_ITEM_COLLECT   | fx/item_collect           | 1     | 0.25         | 0.05 / 0.05  | 否   | Overlay 特效                                 |
 
-Timeline：
-
-| 時間（秒） | Event Name    | Payload                | 說明         |
-| ---------- | ------------- | ---------------------- | ------------ |
-| 0.45       | evt_sfx       | string: `sfx_sword_01` | 播放揮劍音效 |
-| 0.50       | evt_hit_check | float: 0.5             | 計算傷害倍率 |
-| 0.52       | evt_vfx_spawn | string: `vfx_slash_01` | 生成特效     |
-
-## 角色升級彈窗（Warrior Level Up Modal）
-
-角色升級時，系統彈出「升級成功」UI，顯示光效、文字和音效，同時顯示「確認」按鈕。UI 動畫需平滑播放並同步特效與音效，idle 動畫停留時間由 Timeline 控制。
-
-```mermaid
-flowchart TD
-  A[收到 onLevelUp 事件] --> B[檢查是否有其他 modal 開啟]
-  B -->|無| C[播放 enter 動畫]
-  C --> D[觸發 evt_sfx 播放升級音效]
-  C --> E[觸發 evt_vfx_spawn 生成光效]
-  D --> F[idle 狀態維持顯示]
-  E --> F
-  F --> G[玩家點擊確認或 idle 結束]
-  G --> H[播放 exit 動畫並銷毀 UI]
-```
-
-| 欄位                       | 說明                                                              |
-| -------------------------- | ----------------------------------------------------------------- |
-| **Component**              | UI — LevelUpModal                                                 |
-| **Trigger**                | 系統事件：`onLevelUp(newLevel)`                                   |
-| **Preconditions**          | 無其他高優先 modal 開啟                                           |
-| **Visual Intent**          | 彈出特效 + 光暈 + 文字浮現，營造成就感                            |
-| **Spine Animation Name**   | `ui_levelup/enter`、`ui_levelup/idle`、`ui_levelup/exit`          |
-| **Duration**               | enter: 0.45 秒；idle: 1.8 秒；exit: 0.4 秒                        |
-| **Loop**                   | idle: 否                                                          |
-| **Key Bones / Slots**      | `bg`、`frame`、`text_level`、`fx_glow`                            |
-| **Attachments / Mesh**     | `fx_glow` mesh；文字 attachment 可替換                            |
-| **Events emitted (Spine)** | `evt_sfx(sfx_levelup)`、`evt_vfx_spawn(vfx_starburst)`            |
-| **Mix in / out**           | any → enter: 0.12 秒；enter → idle: 0.06 秒；exit → none: 0.08 秒 |
-| **Track index**            | 0（UI base）                                                      |
-| **Engine Notes**           | 監聽事件生成粒子，idle 結束後播放 exit 並銷毀 Spine node          |
-| **Acceptance Criteria**    | enter→idle→exit 平滑，音效同步誤差 < ±0.05 秒；FPS ≥ 60           |
-
-Timeline：
-
-| 時間（秒） | Event Name    | Payload                 | 說明         |
-| ---------- | ------------- | ----------------------- | ------------ |
-| 0.20       | evt_sfx       | string: `sfx_levelup`   | 播放升級音效 |
-| 0.28       | evt_vfx_spawn | string: `vfx_starburst` | 生成光效     |
-
-## 資源命名與結構
+## 資料結構層
 
 ```sh
 assets/

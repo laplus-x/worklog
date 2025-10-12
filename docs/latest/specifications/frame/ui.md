@@ -280,8 +280,6 @@ flowchart TD
 | 遊戲畫布         | 360px | 480px                       | Padding 0        | Frame: `Game/Canvas`          |
 | 操作按鈕群       | 360px | 48px                        | Margin Top 12px  | Component: `Button/Action`    |
 
-> 響應式提示：手機 360px 寬度，桌面可 720px，保持間距比例。
-
 ### 字型
 
 | 元件        | 字型             | 大小 | 行高 | 顏色                              |
@@ -318,40 +316,15 @@ flowchart TD
 | Game Canvas | Pause           | 畫面凍結 + 按鈕高亮        | Instant | -             |
 | Game Canvas | GameOver        | 顯示分數 + 重玩按鈕動畫    | 0.3s    | Ease Out      |
 
+### 響應式規範
+
+| 裝置    | 寬度    | 尺寸縮放規則                              |
+| ------- | ------- | ----------------------------------------- |
+| Mobile  | 360px   | 元件寬度保持，Padding / Margin 按比例縮放 |
+| Tablet  | 720px   | 元件寬度放大 2x，間距按比例放大           |
+| Desktop | ≥1080px | 元件寬度可固定，居中顯示                  |
+
 ## 元件
-
-### 元件命名
-
-```
-Button/
-  ├─ Primary/
-  │   ├─ Default
-  │   ├─ Hover
-  │   └─ Disabled
-  └─ Secondary/
-      ├─ Default
-      └─ Hover
-
-Card/
-  └─ Rules/
-      ├─ Collapsed
-      └─ Expanded
-
-Score/
-  ├─ Current
-  └─ Final/Highlighted
-
-Game/
-  └─ Canvas/
-      ├─ Playing
-      ├─ Paused
-      └─ GameOver
-
-Button/Action/
-  ├─ Pause
-  ├─ Mute
-  └─ Replay
-```
 
 ### 按鈕 Button
 
