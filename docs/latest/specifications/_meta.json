@@ -11,8 +11,8 @@
   },
   {
     "type": "dir",
-    "name": "story",
-    "label": "劇情"
+    "name": "text",
+    "label": "文本"
   },
   {
     "type": "dir",
