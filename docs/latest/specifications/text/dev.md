@@ -25,7 +25,7 @@ sequenceDiagram
     F-->>U: 顯示主選單 / 開始遊戲按鈕
 
     %% === 玩家互動事件 ===
-    U->>F: 點擊或操作遊戲 (收集道具 / 遭遇敵人 / 暫停等)
+    U->>F: 點擊或操作遊戲
     F->>E: emit('gameEvent', {eventCode, textCode})
     E->>F: EventText 接收到事件
     F->>T: 查找 eventTextMap[eventCode][textCode]
@@ -205,9 +205,9 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    A[任意元件/按鈕] -->|emit('gameEvent', {eventCode, textCode})| B[EventBus (EventEmitter)]
+    A[任意元件/按鈕] -->|emit gameEvent| B[EventBus]
     B --> C[EventText 元件]
-    C --> D{查找 eventTextMap[eventCode][textCode]}
+    C --> D{查找 eventTextMap}
     D -->|找到對應文本| E[設定 currentText & visible = true]
     E --> F[顯示文本]
     F --> G{displayTime > 0 ?}

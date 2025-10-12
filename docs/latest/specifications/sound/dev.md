@@ -249,12 +249,21 @@ sequenceDiagram
 
 ## 邏輯層
 
+```mermaid
+flowchart TD
+    A[任意元件/按鈕] -->|emit gameEvent| B[EventBus]
+    B --> C[AudioEvent Hook]
+    C --> D{查找 audioEventMap}
+    D -->|找到對應音效| E[播放音效]
+```
+
 ### 架構樹
 
 ```sh
 src/
 ├── audio/
-│ ├── audioData.json # JSON 音效資料 │ ├── playAudio.js # 播放音效工具函式
+│ ├── audioData.json # JSON 音效資料
+│ ├── playAudio.js # 播放音效工具函式
 │ └── audioBus.js # RTPC / Switch / Ducking 控制
 ├── components/
 │ └── GameAudioProvider.jsx # 綁定 EventBus & 播放音效

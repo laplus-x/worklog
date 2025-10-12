@@ -40,7 +40,7 @@ flowchart TD
 ## 優先順序
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[事件觸發] --> B[更新數值]
     B --> C[更新 Buff]
     C --> D[驗證數據 ValidateGameState]

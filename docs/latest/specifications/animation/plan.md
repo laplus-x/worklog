@@ -21,7 +21,7 @@
 ### 角色攻擊（Warrior Attack）
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[點擊攻擊] --> B[揮劍動作]
     B --> C[音效/特效同步]
     C --> D[命中反饋]
@@ -40,7 +40,7 @@ flowchart LR
 ### 角色防禦動作（Warrior Block）
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[點擊防禦] --> B[舉盾準備]
     B --> C[防禦命中]
     C --> D[特效/音效回饋]
@@ -61,7 +61,7 @@ flowchart LR
 ### 角色升級彈窗（Warrior LevelUp Modal）
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[升級事件觸發] --> B[enter 動畫]
     B --> C[音效/光效]
     C --> D[idle 停留]
@@ -81,7 +81,7 @@ flowchart LR
 ### 技能冷卻提示（Skill Cooldown UI）
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[技能冷卻完成] --> B[按鈕亮起]
     B --> C[閃爍提示]
     C --> D[玩家使用技能]
@@ -99,7 +99,7 @@ flowchart LR
 ### 任務完成彈窗（Quest Complete Modal）
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[任務完成] --> B[enter 動畫]
     B --> C[光效/音效]
     C --> D[idle 顯示內容]
