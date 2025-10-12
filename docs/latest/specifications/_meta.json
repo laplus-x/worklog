@@ -6,6 +6,11 @@
   },
   {
     "type": "dir",
+    "name": "project",
+    "label": "專案"
+  },
+  {
+    "type": "dir",
     "name": "frame",
     "label": "畫面"
   },
