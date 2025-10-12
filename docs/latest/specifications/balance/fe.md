@@ -8,6 +8,48 @@
 - 提供前端/後端可直接引用的 JSON 配置與程式邏輯
 - 包含單位、邊界值、臨時增益效果持續時間、事件優先順序
 
+## 系統架構
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as 使用者
+    participant F as 前端 / UI
+    participant E as 遊戲邏輯 / EventBus
+    participant S as 狀態管理 / GameState
+
+    %% === 收集道具 ===
+    U->>F: 與道具碰撞
+    F->>E: emit('collectItem', {item})
+    E->>S: 更新分數 / HP / Speed
+    S->>S: 驗證數值 / Buff 持續時間
+    S-->>F: 更新 UI (Score, HP, Buff)
+
+    %% === 遭遇敵人 ===
+    U->>F: 與敵人碰撞
+    F->>E: emit('hitEnemy', {enemy})
+    E->>S: 扣 HP、扣分
+    S->>S: 驗證數值 / Buff 持續時間
+    S-->>F: 更新 UI (HP, Score)
+
+    %% === 時間更新 / Buff ===
+    E->>S: emit('timeTick', {deltaTime})
+    S->>S: 更新 Buff 效果與持續時間
+    S-->>F: 更新 UI (Buff, Time)
+
+    %% === 重置 / 重玩 ===
+    U->>F: 按 Restart
+    F->>E: emit('restartGame')
+    E->>S: 重置 GameState
+    S-->>F: 更新 UI (Score, HP, Buff, Position)
+
+    %% === 排行榜顯示 ===
+    U->>F: 點擊 Leaderboard
+    F->>E: emit('viewLeaderboard')
+    E->>S: 取得分數排行
+    S-->>F: 顯示排行榜 UI
+```
+
 ## 優先順序
 
 ```mermaid
@@ -62,7 +104,7 @@ flowchart LR
 | 重玩遊戲   | 玩家按 Restart             | 0        | 重置 Score、HP、位置、道具 |
 | 排行榜顯示 | 遊戲結束或點擊 Leaderboard | 0        | 顯示前 N 名分數            |
 
-### 碰撞規則
+碰撞規則：
 
 - 道具優先處理 → 玩家爽感先行
 - 道具/敵人同時觸發 → 道具優先

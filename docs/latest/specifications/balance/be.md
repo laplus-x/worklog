@@ -4,11 +4,42 @@
 
 ## 文件用途
 
-- 提供後端統一的分數驗證流程與 API 邏輯參考  
-- 確保前端上傳的分數、時間、等級皆符合遊戲邏輯  
-- 防止封包重放、分數竄改與異常數值  
-- 支援排行榜與資料分析系統安全寫入  
-- 提供異常資料留存與後續 AI 作弊檢測依據  
+- 提供後端統一的分數驗證流程與 API 邏輯參考
+- 確保前端上傳的分數、時間、等級皆符合遊戲邏輯
+- 防止封包重放、分數竄改與異常數值
+- 支援排行榜與資料分析系統安全寫入
+- 提供異常資料留存與後續 AI 作弊檢測依據
+
+## 系統架構
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as 使用者
+    participant F as 前端 / 客戶端
+    participant B as 後端 API
+    participant D as 資料庫
+
+    %% === 分數上傳流程 ===
+    U->>F: 完成遊戲，準備上傳分數
+    F->>B: POST /submitScore {score, playTime, level, sessionId, signature}
+
+    %% === 後端驗證流程 ===
+    B->>B: 驗證 SessionId 是否有效
+    B->>B: 驗證 Signature 是否正確
+    B->>B: 檢查分數合理性 (Score / PlayTime / Level)
+    B->>B: 檢查封包重放 / 時間戳
+    alt 驗證通過
+        B->>D: 寫入排行榜與分數資料
+        B-->>F: 回傳 success
+    else 驗證失敗
+        B->>D: 標記作弊 / 留存異常資料
+        B-->>F: 回傳 failure + 錯誤訊息
+    end
+
+    %% === 前端處理 ===
+    F-->>U: 顯示上傳結果 (成功 / 失敗)
+```
 
 ## 驗證原則
 
@@ -18,19 +49,9 @@
 - 拒絕任何異常或不合邏輯的數據
 - 一局遊戲只能上傳一次（防重放）
 
-## 驗證流程
+## 資料結構層
 
-```mermaid
-flowchart LR
-    A[收到分數上傳] --> B[驗證 Session]
-    B --> C[驗證 Signature]
-    C --> D[檢查 Score 合理性]
-    D --> E{通過?}
-    E -->|是| F[寫入排行榜]
-    E -->|否| G[標記作弊並拒絕上傳]
-```
-
-## 上傳資料格式
+### API
 
 ```json
 {
@@ -47,7 +68,23 @@ flowchart LR
 }
 ```
 
-## 分數簽章驗證（Signature Validation）
+### 資料庫結構
+
+| 欄位       | 型態     | 說明           |
+| ---------- | -------- | -------------- |
+| playerId   | string   | 玩家唯一識別碼 |
+| sessionId  | string   | 遊戲局 ID      |
+| score      | int      | 最終分數       |
+| playTime   | float    | 遊玩時間       |
+| level      | int      | 結束等級       |
+| signature  | string   | 加密簽章       |
+| valid      | boolean  | 驗證是否通過   |
+| suspicious | boolean  | 是否標記為可疑 |
+| timestamp  | datetime | 上傳時間       |
+
+## 邏輯層
+
+### 分數簽章驗證（Signature Validation）
 
 伺服器利用 `session.secretKey` 重新生成簽章，與上傳值比對。
 
@@ -65,7 +102,7 @@ function verifySignature(scorePayload, secretKey) {
 }
 ```
 
-## 分數合理性檢查
+### 分數合理性檢查
 
 ```js
 function validateScoreLogic(payload) {
@@ -84,7 +121,7 @@ function validateScoreLogic(payload) {
 }
 ```
 
-## 封包防重放（Anti-Replay）
+### 封包防重放（Anti-Replay）
 
 伺服器驗證：
 
@@ -102,20 +139,6 @@ function verifyReplayProtection(sessionId, timestamp, usedSessions) {
   return true;
 }
 ```
-
-## 資料庫結構
-
-| 欄位       | 型態     | 說明           |
-| ---------- | -------- | -------------- |
-| playerId   | string   | 玩家唯一識別碼 |
-| sessionId  | string   | 遊戲局 ID      |
-| score      | int      | 最終分數       |
-| playTime   | float    | 遊玩時間       |
-| level      | int      | 結束等級       |
-| signature  | string   | 加密簽章       |
-| valid      | boolean  | 驗證是否通過   |
-| suspicious | boolean  | 是否標記為可疑 |
-| timestamp  | datetime | 上傳時間       |
 
 ## 驗證層級比較表
 

@@ -45,12 +45,12 @@ sequenceDiagram
 
 ### 資料交換
 
-| 層級          | 傳輸方式                            | 內容範例                            | 備註         |
-| ------------- | ----------------------------------- | ----------------------------------- | ------------ |
-| 前端 → 後端   | `POST /api/score`                   | `{ userId: "U123", score: 850 }`    | 結算上傳分數 |
-| 後端 → 資料庫 | `insertOne()`                       | `{ userName: "Alice", score: 850 }` | MongoDB 儲存 |
-| 資料庫 → 後端 | `find().sort({score:-1}).limit(10)` | 排行榜資料                          |              |
-| 後端 → 前端   | WebSocket: `LEADERBOARD_UPDATE`     | `[{rank:1,name:"Bob",score:1200}]`  | 即時更新     |
+| 發送端 | 接收端 | 傳輸方式                            | 內容範例                            | 備註         |
+| ------ | ------ | ----------------------------------- | ----------------------------------- | ------------ |
+| 前端   | 後端   | `POST /api/score`                   | `{ userId: "U123", score: 850 }`    | 結算上傳分數 |
+| 後端   | 資料庫 | `insertOne()`                       | `{ userName: "Alice", score: 850 }` | MongoDB 儲存 |
+| 資料庫 | 後端   | `find().sort({score:-1}).limit(10)` | 排行榜資料                          |              |
+| 後端   | 前端   | WebSocket: `LEADERBOARD_UPDATE`     | `[{rank:1,name:"Bob",score:1200}]`  | 即時更新     |
 
 ### 非同步節點
 
@@ -142,7 +142,7 @@ src/
 
 ### 路由
 
-### POST `/api/score` - 上傳分數
+### 上傳分數
 
 ```js
 /**
@@ -183,7 +183,7 @@ app.post("/api/score", async (req, res) => {
 });
 ```
 
-### GET `/api/leaderboard` - 取得排行榜
+### 取得排行榜
 
 ```js
 /**
@@ -211,7 +211,7 @@ app.get("/api/leaderboard", async (_, res) => {
 });
 ```
 
-### broadcastLeaderboard 即時同步排行榜
+### 即時同步排行榜
 
 ```js
 /**

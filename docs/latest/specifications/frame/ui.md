@@ -34,7 +34,7 @@
 +------------------------------------------------+
 ```
 
-#### 重點
+重點：
 
 - Logo/標題置頂提供品牌識別。
 - 遊戲規則卡片初始收合，降低認知負荷；展開按鈕明顯，方便新手理解規則。
@@ -64,7 +64,7 @@
 +------------------------------------------------+
 ```
 
-#### 重點
+重點：
 
 - 分數顯示區置頂，更新動畫淡入/高亮增強即時反饋。
 - 遊戲畫布留白合理，避免道具或敵人遮擋角色。
@@ -123,7 +123,7 @@ flowchart TD
 | Card/Rules         | 顯示簡要或詳細遊戲規則 | 點擊「展開更多」→ 展開 / 點擊「收合」→ 收合 | 背景 #F8F9FA，圓角 8px，陰影 2px，字型 標題 16px Semibold / 內容 14px Regular |
 | Button (展開/收合) | 控制卡片收合與展開     | 點擊觸發高度動畫 + Fade In/Out              | 主要色 #007bff，Hover 深藍 #0056b3，圓角 4px                                  |
 
-#### 重點
+重點：
 
 - 收合/展開設計降低初次資訊量，減少認知負荷。
 - 按鈕易點，符合可發現性原則。
@@ -148,7 +148,7 @@ flowchart TD
 | Button/Primary | 啟動遊戲      | 點擊 → 進入遊玩頁面 | 綠底白字 Default，Hover 深綠，Disabled 灰底灰字，圓角 8px，文字 16px Medium |
 | Button/Primary | Disabled 狀態 | 不可操作            | 灰底灰字，透明度 60%                                                        |
 
-#### 重點
+重點：
 
 - 顏色與狀態明確區分操作性。
 - Hover 高亮提供即時互動回饋。
@@ -172,7 +172,7 @@ flowchart TD
 | Button/Secondary | 開啟排行榜 Modal | 點擊 → 彈出排行榜 Modal         | 藍底白字 Default，Hover 深藍，圓角 8px，文字 16px Medium        |
 | Modal            | 顯示排行榜       | 點擊遮罩或關閉按鈕 → 收合 Modal | 半透明背景 #000000 50% opacity，Modal 白底，圓角 12px，陰影 8px |
 
-#### 重點
+重點：
 
 - Modal 彈出避免跳頁，保持上下文。
 - Hover 動態提升可操作感，顏色差異區分操作優先級。
@@ -207,7 +207,7 @@ flowchart TD
 | Game/Canvas | 暫停               | 點擊暫停按鈕 → 畫面凍結 + 按鈕高亮        | 背景不變，角色停止動畫，按鈕高亮 #28a745                                |
 | Game/Canvas | 遊戲結束           | 遊戲結束 → 顯示分數 + 重玩按鈕動畫        | 分數高亮 #FF9800，按鈕藍色閃爍，突出操作                                |
 
-#### 重點
+重點：
 
 - 動態畫布提供即時互動回饋，增強沉浸感。
 - 暫停狀態明確，防止誤操作。
@@ -231,7 +231,7 @@ flowchart TD
 | Score    | 顯示即時分數 | 分數更新 → 動畫淡入/淡出   | 字型 Inter Bold 18px，顏色 #28a745 (進行中)，#FF9800 (高亮)，Padding 8px |
 | Score    | 顯示最終分數 | 遊戲結束 → 高亮 + Scale Up | 字型 Inter Bold 18px，顏色 #FF9800，高亮動畫 0.35s                       |
 
-#### 重點
+重點：
 
 - 即時更新增強玩家掌握進度感。
 - 高亮顯示最終分數給予成就感。
@@ -260,13 +260,15 @@ flowchart TD
 | Button/Action | 靜音切換 | 點擊 → 圖示變化（音符 → 叉） | 藍底白字 Default，靜音中圖示變化，圓角 8px     |
 | Button/Action | 重玩遊戲 | 點擊 → 遊戲重啟動畫          | 藍底白字 Default，按鈕閃爍表示重啟，圓角 8px   |
 
-#### 重點
+重點：
 
 - 狀態清楚，動態回饋增強可操作性。
 - 圖示變化幫助快速辨識功能。
 - 避免過多動畫干擾核心遊戲操作。
 
-## 尺寸規範
+## 樣式
+
+### 尺寸
 
 | 區塊             | 寬度  | 高度                        | Padding / Margin | Figma Frame 建議              |
 | ---------------- | ----- | --------------------------- | ---------------- | ----------------------------- |
@@ -280,7 +282,7 @@ flowchart TD
 
 > 響應式提示：手機 360px 寬度，桌面可 720px，保持間距比例。
 
-## 字型規範
+### 字型
 
 | 元件        | 字型             | 大小 | 行高 | 顏色                              |
 | ----------- | ---------------- | ---- | ---- | --------------------------------- |
@@ -290,7 +292,7 @@ flowchart TD
 | 按鈕文字    | Inter / Medium   | 16px | 24px | #FFFFFF                           |
 | 分數文字    | Inter / Bold     | 18px | 24px | #28a745 (進行中) / #FF9800 (高亮) |
 
-## 顏色規範（Color Token）
+### 顏色（Color Token）
 
 | 名稱                | HEX     | 用途                         |
 | ------------------- | ------- | ---------------------------- |
@@ -302,7 +304,23 @@ flowchart TD
 | Background          | #FFFFFF | 背景色                       |
 | Card Background     | #F8F9FA | 卡片底色                     |
 
-## 元件命名與 Variant
+### 動態互動（Motion Spec）
+
+| 元件        | 狀態            | 動畫 / 觸發                | 時間    | 緩動          |
+| ----------- | --------------- | -------------------------- | ------- | ------------- |
+| Button      | Hover           | 顏色深化 + Light Shadow    | 0.2s    | Ease In Out   |
+| Button      | Disabled        | 顏色變灰                   | 無      | -             |
+| Card Rules  | Expand          | 高度展開 + Fade In         | 0.3s    | Ease In Out   |
+| Card Rules  | Collapse        | 高度收合 + Fade Out        | 0.3s    | Ease In Out   |
+| Score       | Update          | 數字淡入/淡出              | 0.25s   | Ease Out      |
+| Score       | Final Highlight | 數字高亮 + Scale Up        | 0.35s   | Ease Out Back |
+| Game Canvas | Playing         | 角色 / 道具 / 敵人動畫持續 | 實時    | Linear        |
+| Game Canvas | Pause           | 畫面凍結 + 按鈕高亮        | Instant | -             |
+| Game Canvas | GameOver        | 顯示分數 + 重玩按鈕動畫    | 0.3s    | Ease Out      |
+
+## 元件
+
+### 元件命名
 
 ```
 Button/
@@ -334,22 +352,6 @@ Button/Action/
   ├─ Mute
   └─ Replay
 ```
-
-## 動態互動規範（Motion Spec）
-
-| 元件        | 狀態            | 動畫 / 觸發                | 時間    | 緩動          |
-| ----------- | --------------- | -------------------------- | ------- | ------------- |
-| Button      | Hover           | 顏色深化 + Light Shadow    | 0.2s    | Ease In Out   |
-| Button      | Disabled        | 顏色變灰                   | 無      | -             |
-| Card Rules  | Expand          | 高度展開 + Fade In         | 0.3s    | Ease In Out   |
-| Card Rules  | Collapse        | 高度收合 + Fade Out        | 0.3s    | Ease In Out   |
-| Score       | Update          | 數字淡入/淡出              | 0.25s   | Ease Out      |
-| Score       | Final Highlight | 數字高亮 + Scale Up        | 0.35s   | Ease Out Back |
-| Game Canvas | Playing         | 角色 / 道具 / 敵人動畫持續 | 實時    | Linear        |
-| Game Canvas | Pause           | 畫面凍結 + 按鈕高亮        | Instant | -             |
-| Game Canvas | GameOver        | 顯示分數 + 重玩按鈕動畫    | 0.3s    | Ease Out      |
-
-## 元件
 
 ### 按鈕 Button
 

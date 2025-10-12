@@ -69,20 +69,20 @@ sequenceDiagram
 
 ### 資料交換
 
-| 層級          | 傳輸方式                            | 內容範例                            | 備註         |
-| ------------- | ----------------------------------- | ----------------------------------- | ------------ |
-| 前端 → 後端   | `POST /api/score`                   | `{ userId: "U123", score: 850 }`    | 結算上傳分數 |
-| 後端 → 前端   | WebSocket: `LEADERBOARD_UPDATE`     | `[{rank:1,name:"Bob",score:1200}]`  | 即時更新     |
-| 前端 → 使用者 | React Render 更新                   | 排行榜顯示                          | Canvas + UI  |
+| 發送端 | 接收端 | 傳輸方式                        | 內容範例                           | 備註         |
+| ------ | ------ | ------------------------------- | ---------------------------------- | ------------ |
+| 前端   | 後端   | `POST /api/score`               | `{ userId: "U123", score: 850 }`   | 結算上傳分數 |
+| 後端   | 前端   | WebSocket: `LEADERBOARD_UPDATE` | `[{rank:1,name:"Bob",score:1200}]` | 即時更新     |
+| 前端   | 使用者 | React Render 更新               | 排行榜顯示                         | Canvas + UI  |
 
 ### 非同步節點
 
-| 節點                      | 描述               | 延遲處理       |
-| ------------------------- | ------------------ | -------------- |
-| `WebSocket.onmessage`     | 接收排行榜更新     | 即時 UI 更新   |
-| `setTimeout(1500)`        | 敵人碰撞後解除暈眩 | 非阻塞延遲     |
-| `requestAnimationFrame()` | 遊戲主循環更新     | 每秒 60fps     |
-| `fetch /api/score`        | 分數上傳           | Promise-based  |
+| 節點                      | 描述               | 延遲處理      |
+| ------------------------- | ------------------ | ------------- |
+| `WebSocket.onmessage`     | 接收排行榜更新     | 即時 UI 更新  |
+| `setTimeout(1500)`        | 敵人碰撞後解除暈眩 | 非阻塞延遲    |
+| `requestAnimationFrame()` | 遊戲主循環更新     | 每秒 60fps    |
+| `fetch /api/score`        | 分數上傳           | Promise-based |
 
 ## 資料結構層（Data Structure Layer）
 
