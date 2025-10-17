@@ -1,5 +1,10 @@
 [
   {
+    "text": "刷題",
+    "link": "/leetcode",
+    "activeMatch": "/leetcode"
+  },
+  {
     "text": "日誌",
     "link": "/logs",
     "activeMatch": "/logs"

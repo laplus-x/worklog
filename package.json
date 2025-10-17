@@ -20,6 +20,8 @@
     "@visx/shape": "^3.12.0",
     "@visx/threshold": "^3.12.0",
     "d3": "^7.9.0",
+    "livecodes": "^0.12.0",
+    "remark-livecodes": "^0.4.1",
     "rspress": "^1.40.2"
   },
   "devDependencies": {

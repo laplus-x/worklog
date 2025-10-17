@@ -1,6 +1,7 @@
 import * as path from 'node:path';
 import mermaid from 'rspress-plugin-mermaid';
 import { defineConfig } from 'rspress/config';
+import { livecodes } from './plugins/livecodes';
 
 export default defineConfig({
   base: '/worklog',
@@ -38,7 +39,8 @@ export default defineConfig({
           displayMode: "week",
         }
       }
-    })
+    }),
+    livecodes()
   ],
   builderConfig: {
     resolve: {
