@@ -15,6 +15,15 @@ import stats from "./stats.json";
 - **新增 clean 指令**：增加 clean 指令，並統一其他 script 寫法以提升可維護性。
 - **鎖檔更新**：刪除舊的 package-lock.json 並重產 yarn.lock，確保依賴一致性。
 
+### Fastlane 自動化發佈流程建置
+
+- **初始化 Fastlane 專案**：建立基本設定與結構  
+  ```fastlane/init```  
+  ```fastlane/Gymfile```
+- **新增環境變數範例檔** (```.env.example```)，提供打包與部署設定參考  
+- **整合 iOS 打包流程**  
+- **測試自動發佈**：驗證 Fastlane 部署至 App Store 的流程可行性  
+
 ## 每週總結
 
 <GitHeatmapChart data={stats} />

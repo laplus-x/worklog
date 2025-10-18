@@ -1,0 +1,25 @@
+import { GitBarChart, GitHeatmapChart } from "@/Git";
+import stats from "./stats.json";
+
+# 2025/10/13–2025/10/17
+
+<GitBarChart data={stats} />
+
+## snv 少女星
+
+### iOS 與 Android 打包與版本更新
+
+- 修復 Android 打包後環境變數讀取失敗的問題。
+- 修正 iOS 在 build phase 打包 bundle 的問題。
+- 更新 iOS 與 Android 版本號。
+- 處理過時的 CMake/JNI 文件，確保自動鏈接（autolink）功能正常。
+- 完善隱私數據權限說明。
+
+## 每周總結
+
+<GitHeatmapChart data={stats} />
+
+- 完成 **iOS 與 Android 的打包與版本更新工作**
+- 修復打包過程中環境變數與 bundle 的問題
+- 確保隱私數據權限說明完整
+- 解決了過時 CMake/JNI 文件導致的建置問題，讓自動鏈接功能可以正常運作
