@@ -40,7 +40,7 @@ export default defineConfig({
         }
       }
     }),
-    livecodes()
+    livecodes({ render: "button" }),
   ],
   builderConfig: {
     resolve: {
