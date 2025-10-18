@@ -1,0 +1,162 @@
+# Implement Queue using Stacks（使用堆疊實作佇列）
+
+[題目連結](https://leetcode.com/problems/implement-queue-using-stacks)
+
+## 設計用意  
+這題的核心目的，是讓初階工程師學會「用不同資料結構模擬相同行為」。  
+在實務開發中，我們常會遇到這種情境：  
+> 「系統只提供一種資料結構，但你需要另一種行為模式。」
+
+例如，某些 API 只支援 **stack（堆疊）** 操作（後進先出 LIFO），  
+但你的需求是 **queue（佇列）** 行為（先進先出 FIFO）。  
+這題正是透過設計兩個 stack 來模擬 queue 的操作。  
+
+這樣的題目考驗：
+- 抽象思考能力（interface vs. implementation）
+- 資料結構轉換的邏輯
+- 操作效能與空間管理的取捨思維
+
+## 學習重點  
+1. **理解 stack（堆疊）與 queue（佇列）的差異**  
+   - stack：後進先出（LIFO）  
+   - queue：先進先出（FIFO）  
+2. **資料反轉技巧**：用兩個 stack 來反轉元素順序，達到 queue 行為。  
+3. **封裝思維**：把底層的 stack 操作封裝成 queue 介面，模擬實務中的 API 封裝。  
+4. **攤平時間複雜度（Amortized Complexity）**：  
+   雖然有些操作一次可能會很慢，但平均下來仍是 O(1)。  
+5. **維持簡潔、可讀性高的程式設計風格**：這是職場中維護性與團隊合作的基礎。
+
+## 原文簡述
+Implement the following operations of a queue using stacks:  
+- `push(x)` — Push element x to the back of queue.  
+- `pop()` — Removes the element from in front of queue and returns that element.  
+- `peek()` — Get the front element.  
+- `empty()` — Return whether the queue is empty.  
+
+## 題目講解  
+由於 stack 只能從「頂端」操作，無法直接取出底部的元素。  
+要模擬 queue 的「先進先出」行為，我們可以利用兩個 stack：  
+
+- `stackIn`：專門用來接收新加入的元素。  
+- `stackOut`：專門用來取出元素。  
+
+操作流程如下：  
+1. **push(x)**：直接把元素放進 `stackIn`。  
+2. **pop() / peek()**：  
+   - 如果 `stackOut` 為空，  
+     就把 `stackIn` 的所有元素「反轉」搬過去（pop 再 push）。  
+   - 這樣最早進來的元素會在 `stackOut` 頂端。  
+3. **empty()**：當兩個 stack 都為空時，佇列即為空。
+
+這樣的設計保證每個元素最多只被移動兩次，因此效率仍維持良好。
+
+## 範例講解  
+假設進行以下操作：
+
+| 操作 | stackIn | stackOut | 備註 |
+|------|-----------|------------|------|
+| push(1) | [1] | [] | 新增元素 |
+| push(2) | [1,2] | [] | 持續入隊 |
+| peek() | [ ] | [2,1] | 轉移後查看頂端 → 1 |
+| pop() | [ ] | [2] | 移除頂端 → 1 |
+| empty() | [ ] | [2] | 還有元素，非空 |
+
+最終結果：
+- peek() 回傳 1  
+- pop() 回傳 1  
+- empty() 回傳 false  
+
+## 虛擬碼（Pseudocode）  
+
+```
+push(x):
+    stackIn.push(x)
+
+pop():
+    if stackOut 為空:
+        while stackIn 不為空:
+            stackOut.push(stackIn.pop())
+    return stackOut.pop()
+
+peek():
+    if stackOut 為空:
+        while stackIn 不為空:
+            stackOut.push(stackIn.pop())
+    return stackOut.top()
+
+empty():
+    return stackIn 為空 且 stackOut 為空
+```
+
+## 時間與空間複雜度  
+- **時間複雜度**：  
+  - 單次操作最壞情況為 O(n)（當需要整體搬移）  
+  - 平均（攤平）時間複雜度為 **O(1)**  
+    → 因為每個元素最多只被搬移一次進 stackOut。  
+- **空間複雜度**：  
+  - 同時儲存所有元素於兩個 stack 中（不重複），為 **O(n)**。
+
+## 範例程式碼（JavaScript + JSDoc）  
+
+```js livecodes
+/**
+ * 使用兩個 stack（堆疊）實作一個 queue（佇列）
+ * @constructor
+ */
+class MyQueue {
+  constructor() {
+    /** @private @type {any[]} 入隊堆疊，用於接收新元素 */
+    this.stackIn = [];
+
+    /** @private @type {any[]} 出隊堆疊，用於輸出最早加入的元素 */
+    this.stackOut = [];
+  }
+
+  /**
+   * 將元素加入佇列尾端
+   * @param {any} x - 要加入的元素
+   * @return {void}
+   */
+  push(x) {
+    this.stackIn.push(x);
+  }
+
+  /**
+   * 若出隊堆疊為空，將入隊堆疊的元素全部轉移
+   * @private
+   * @return {void}
+   */
+  _transfer() {
+    if (this.stackOut.length > 0) return;
+    while (this.stackIn.length > 0) {
+      this.stackOut.push(this.stackIn.pop());
+    }
+  }
+
+  /**
+   * 移除並回傳佇列開頭的元素
+   * @return {any} 佇列最前方的元素
+   */
+  pop() {
+    this._transfer();
+    return this.stackOut.pop();
+  }
+
+  /**
+   * 回傳佇列開頭的元素但不移除
+   * @return {any} 佇列最前方的元素
+   */
+  peek() {
+    this._transfer();
+    return this.stackOut[this.stackOut.length - 1];
+  }
+
+  /**
+   * 檢查佇列是否為空
+   * @return {boolean} 若為空則回傳 true
+   */
+  empty() {
+    return this.stackIn.length === 0 && this.stackOut.length === 0;
+  }
+}
+```

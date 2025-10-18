@@ -5,8 +5,8 @@
     "label": "Overview"
   },
   {
-    "type": "file",
-    "name": "implement-queue-using-stacks",
-    "label": "232. Implement Queue using Stacks"
+    "type": "dir",
+    "name": "structure",
+    "label": "資料結構"
   }
 ]
